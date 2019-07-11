@@ -43,6 +43,16 @@ class ModelFactory
             return new SearchResults($data);
         }
 
+        //File Requests List
+        if (isset($data['file_requests'])) {
+            return new FileRequestCollection($data);
+        }
+
+        //File Request
+        if (isset($data['id']) && isset($data['is_open'])) {
+            return new FileRequest($data);
+        }
+
         //Deleted File/Folder
         if (static::isDeletedFileOrFolder($data)) {
             return new DeletedMetadata($data);
